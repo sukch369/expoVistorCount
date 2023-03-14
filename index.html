@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>전시관 방문자 기록기</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <!--글씨체-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      rel="stylesheet"
+    />
+    <!--글씨체-->
+    <!--모바일 풀화면-->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!--모바일 풀화면-->
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="https://www.gise.kr/images/logo.jpg" />
+      </div>
+      <div class="title">
+        <h1>전시관 방문자 기록기</h1>
+      </div>
+
+      <div id="counter">방문자수</div>
+    </header>
+    <main>
+      <!-- 
+    <div>
+      지역
+      <select id="h_area1" onChange="cat1_change(this.value,h_area2)">
+        <option>-선택-</option>
+        <option value="1">서울</option>
+        <option value="2">부산</option>
+        <option value="3">대구</option>
+        <option value="4">인천</option>
+        <option value="5">광주</option>
+        <option value="6">대전</option>
+        <option value="7">울산</option>
+        <option value="8">강원</option>
+        <option value="9" selected>경기</option>
+        <option value="10">경남</option>
+        <option value="11">경북</option>
+        <option value="12">전남</option>
+        <option value="13">전북</option>
+        <option value="14">제주</option>
+        <option value="15">충남</option>
+        <option value="16">충북</option>
+      </select>
+      <select id="h_area2">
+        <option>-선택-</option>
+        <option value="109">고양시 덕양구</option>
+        <option value="110">고양시 일산구</option>
+        <option value="111">과천시</option>
+        <option value="112">광명시</option>
+        <option value="113">광주시</option>
+        <option value="114">구리시</option>
+        <option value="115">군포시</option>
+        <option value="116">김포시</option>
+        <option value="117">남양주시</option>
+        <option value="118">동두천시</option>
+        <option value="119">부천시 소사구</option>
+        <option value="120">부천시 오정구</option>
+        <option value="121">부천시 원미구</option>
+        <option value="122">성남시 분당구</option>
+        <option value="123">성남시 수정구</option>
+        <option value="124">성남시 중원구</option>
+        <option value="125">수원시 권선구</option>
+        <option value="126" selected>수원시 장안구</option>
+        <option value="127">수원시 팔달구</option>
+        <option value="128">시흥시</option>
+        <option value="129">안산시 단원구</option>
+        <option value="130">안산시 상록구</option>
+        <option value="131">안성시</option>
+        <option value="132">안양시 동안구</option>
+        <option value="133">안양시 만안구</option>
+        <option value="134">오산시</option>
+        <option value="135">용인시</option>
+        <option value="136">의왕시</option>
+        <option value="137">의정부시</option>
+        <option value="138">이천시</option>
+        <option value="139">파주시</option>
+        <option value="140">평택시</option>
+        <option value="141">하남시</option>
+        <option value="142">화성시</option>
+        <option value="143">가평군</option>
+        <option value="144">양주군</option>
+        <option value="145">양평군</option>
+        <option value="146">여주군</option>
+        <option value="147">연천군</option>
+        <option value="148">포천군</option>
+      </select>
+    </div>
+     -->
+      <div class="each">
+        <span class="level">유아</span>
+        <span class="count">
+          <button class="minus" onclick="minus('result_kind')">-</button>
+          <input class="result" id="result_kind" type="number" value="0" />
+          <button class="plus" onclick="plus('result_kind')">+</button>
+        </span>
+      </div>
+      <div class="each">
+        <span class="level">초등학생</span>
+        <span class="count">
+          <button class="minus" onclick="minus('result_ele')">-</button>
+          <input class="result" id="result_ele" type="number" value="0" />
+          <button class="plus" onclick="plus('result_ele')">+</button>
+        </span>
+      </div>
+      <div class="each">
+        <span class="level">중학생</span>
+        <span class="count">
+          <button class="minus" onclick="minus('result_mid')">-</button>
+          <input class="result" id="result_mid" type="number" value="0" />
+          <button class="plus" onclick="plus('result_mid')">+</button>
+        </span>
+      </div>
+      <div class="each">
+        <span class="level">고등학생</span>
+        <span class="count">
+          <button class="minus" onclick="minus('result_high')">-</button>
+          <input class="result" id="result_high" type="number" value="0" />
+          <button class="plus" onclick="plus('result_high')">+</button>
+        </span>
+      </div>
+      <div class="each">
+        <span class="level">성인</span>
+        <span class="count">
+          <button class="minus" onclick="minus('result_adult')">-</button>
+          <input class="result" id="result_adult" type="number" value="0" />
+          <button class="plus" onclick="plus('result_adult')">+</button>
+        </span>
+      </div>
+      <div class="each">
+        <span class="level">합계</span>
+        <input class="result" id="result_sum" type="number" value="0" />
+      </div>
+      <div class="each">
+        <button class="button">확인</button>
+        <button class="button" onclick="reset()">초기화</button>
+      </div>
+    </main>
+
+    <footer>제작자: 교육연구원 석철호</footer>
+    <script src="script.js"></script>
+  </body>
+</html>

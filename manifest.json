@@ -1,0 +1,14 @@
+{
+    "short_name": "giseExpoCount",
+    "name": "giseExpoCount",
+    "icons": [
+      {
+        "src": "gise.png",
+        "sizes": "37x37",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "landscape"
+  }
