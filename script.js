@@ -1,14 +1,58 @@
 let plusBtn = document.getElementsByClassName("plus");
 let minusBtn = document.getElementsByClassName("minus");
-let result_kind = document.getElementById("result_kind"); // 유치원
-let result_ele = document.getElementById("result_ele"); //초등학생
-let result_mid = document.getElementById("result_mid"); //중학생
-let result_high = document.getElementById("result_high"); //고등학생
-let result_adult = document.getElementById("result_adult"); //성인
-let result_sum = document.getElementById("result_sum"); //합계
+let state_list = document.getElementById("state_list"); //시도 선택
+let city_list = document.getElementById("city_list"); //시군구 선택
+let result_kind = document.getElementById("result_kind"); // 유치원 인원수
+let result_ele = document.getElementById("result_ele"); //초등학생 인원수
+let result_mid = document.getElementById("result_mid"); //중학생 인원수
+let result_high = document.getElementById("result_high"); //고등학생 인원수
+let result_adult = document.getElementById("result_adult"); //성인 인원수
+let result_sum = document.getElementById("result_sum"); //합계 인원수
+let stateCityList = new Object();
 const inputURL =
   "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
+const listURL = "stateCityList.json";
+window.onload = function () {
+  loadState();
+};
 
+//지역 불러오기 from json
+function getStateCityList() {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", listURL);
+  xhr.responseType = "json";
+  xhr.send();
+  xhr.onload = () => {
+    if ((xhr.status = 200)) {
+      stateCityList = xhr.response;
+    }
+  };
+}
+getStateCityList();
+
+//시도 불러오기
+function loadState() {
+  let h = [];
+
+  for (let i = 0; i < Object.keys(stateCityList).length; i++) {
+    if (stateCityList[i].state == "경기") {
+      h.push(
+        '<option value="' +
+          i +
+          '"selected>' +
+          stateCityList[i].state +
+          "</option>"
+      );
+    } else {
+      h.push(
+        '<option value="' + i + '">' + stateCityList[i].state + "</option>"
+      );
+    }
+  }
+  state_list.innerHTML = h.join("");
+}
+
+//더하기
 function plus(button) {
   let result = document.getElementById(button);
   Number(result.value);
@@ -42,9 +86,11 @@ function reset() {
   result_high.value = 0;
   result_adult.value = 0;
   sum();
+  loadState();
 }
-
+//확인 함수
 function confirmMessage() {
+  sum();
   let message = "".concat(
     "유치원   (",
     result_kind.value,
@@ -75,10 +121,14 @@ function confirmMessage() {
   }
 }
 
+//데이터 전송 함수
 function sendData() {
+  let area1 = stateCityList[state_list.value].state;
   let concatURL = "".concat(
     inputURL,
-    "?kind=",
+    "?area1=",
+    area1,
+    "&kind=",
     result_kind.value,
     "&ele=",
     result_ele.value,
