@@ -35,7 +35,9 @@
     </header>
     <main>
       <!--지역 선택-->
-      <select name="stateList" id="state_list"></select>
+      <select name="stateList" id="state_list">
+        <option value="테스트"></option>
+      </select>
       <select name="cityList" id="city_list"></select>
       <!--지역 선택-->
 
@@ -43,45 +45,96 @@
         <span class="level">유아</span>
         <span class="count">
           <button class="minus" onclick="minus('result_kind')">-</button>
-          <input class="result" id="result_kind" type="number" value="0" />
-          <button class="plus" onclick="plus('result_kind')">+</button>
+          <input
+            class="result"
+            id="result_kind"
+            type="number"
+            value="0"
+            readonly
+          />
+          <button class="plus" onclick="plus('result_kind',1)">+1</button>
+          <button class="plus" onclick="plus('result_kind',2)">+2</button>
+          <button class="plus" onclick="plus('result_kind',5)">+5</button>
+          <button class="plus" onclick="plus('result_kind',10)">+10</button>
         </span>
       </div>
       <div class="each">
         <span class="level">초등학생</span>
         <span class="count">
           <button class="minus" onclick="minus('result_ele')">-</button>
-          <input class="result" id="result_ele" type="number" value="0" />
-          <button class="plus" onclick="plus('result_ele')">+</button>
+          <input
+            class="result"
+            id="result_ele"
+            type="number"
+            value="0"
+            readonly
+          />
+          <button class="plus" onclick="plus('result_ele',1)">+1</button>
+          <button class="plus" onclick="plus('result_ele',2)">+2</button>
+          <button class="plus" onclick="plus('result_ele',5)">+5</button>
+          <button class="plus" onclick="plus('result_ele',10)">+10</button>
         </span>
       </div>
       <div class="each">
         <span class="level">중학생</span>
         <span class="count">
           <button class="minus" onclick="minus('result_mid')">-</button>
-          <input class="result" id="result_mid" type="number" value="0" />
-          <button class="plus" onclick="plus('result_mid')">+</button>
+          <input
+            class="result"
+            id="result_mid"
+            type="number"
+            value="0"
+            readonly
+          />
+          <button class="plus" onclick="plus('result_mid',1)">+1</button>
+          <button class="plus" onclick="plus('result_mid',2)">+2</button>
+          <button class="plus" onclick="plus('result_mid',5)">+5</button>
+          <button class="plus" onclick="plus('result_mid',10)">+10</button>
         </span>
       </div>
       <div class="each">
         <span class="level">고등학생</span>
         <span class="count">
           <button class="minus" onclick="minus('result_high')">-</button>
-          <input class="result" id="result_high" type="number" value="0" />
-          <button class="plus" onclick="plus('result_high')">+</button>
+          <input
+            class="result"
+            id="result_high"
+            type="number"
+            value="0"
+            readonly
+          />
+          <button class="plus" onclick="plus('result_high',1)">+1</button>
+          <button class="plus" onclick="plus('result_high',2)">+2</button>
+          <button class="plus" onclick="plus('result_high',5)">+5</button>
+          <button class="plus" onclick="plus('result_high',10)">+10</button>
         </span>
       </div>
       <div class="each">
         <span class="level">성인</span>
         <span class="count">
           <button class="minus" onclick="minus('result_adult')">-</button>
-          <input class="result" id="result_adult" type="number" value="0" />
-          <button class="plus" onclick="plus('result_adult')">+</button>
+          <input
+            class="result"
+            id="result_adult"
+            type="number"
+            value="0"
+            readonly
+          />
+          <button class="plus" onclick="plus('result_adult',1)">+1</button>
+          <button class="plus" onclick="plus('result_adult',2)">+2</button>
+          <button class="plus" onclick="plus('result_adult',5)">+5</button>
+          <button class="plus" onclick="plus('result_adult',10)">+10</button>
         </span>
       </div>
       <div class="each">
         <span class="level">합계</span>
-        <input class="result" id="result_sum" type="number" value="0" />
+        <input
+          class="result"
+          id="result_sum"
+          type="number"
+          value="0"
+          readonly
+        />
       </div>
       <div class="each">
         <button class="button" onclick="confirmMessage()">확인</button>

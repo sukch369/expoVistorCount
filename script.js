@@ -12,6 +12,10 @@ let stateCityList = new Object();
 const inputURL =
   "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
 const listURL = "stateCityList.json";
+
+window.addEventListener("DOMContentLoaded", function () {
+  console.log("test");
+});
 window.onload = function () {
   loadState();
 };
@@ -25,12 +29,16 @@ function getStateCityList() {
   xhr.onload = () => {
     if ((xhr.status = 200)) {
       stateCityList = xhr.response;
+    } else {
+      console.log("falied");
+      window.location.reload();
     }
   };
 }
 getStateCityList();
 
 //시도 불러오기
+
 function loadState() {
   let h = [];
 
@@ -53,10 +61,10 @@ function loadState() {
 }
 
 //더하기
-function plus(button) {
+function plus(button, number) {
   let result = document.getElementById(button);
   Number(result.value);
-  result.value++;
+  result.value = Number(result.value) + Number(number);
   sum();
 }
 
@@ -124,10 +132,13 @@ function confirmMessage() {
 //데이터 전송 함수
 function sendData() {
   let area1 = stateCityList[state_list.value].state;
+  let area2;
   let concatURL = "".concat(
     inputURL,
     "?area1=",
     area1,
+    "&area2=",
+    result_kind.value,
     "&kind=",
     result_kind.value,
     "&ele=",
