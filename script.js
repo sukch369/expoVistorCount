@@ -13,11 +13,8 @@ const inputURL =
   "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
 const listURL = "stateCityList.json";
 
-window.addEventListener("DOMContentLoaded", function () {
-  console.log("test");
-});
 window.onload = function () {
-  loadState();
+  getStateCityList();
 };
 
 //지역 불러오기 from json
@@ -37,30 +34,28 @@ function getStateCityList() {
 }
 getStateCityList();
 
-//시도 불러오기
-
-function loadState() {
+//시군구 불러오기
+function loadCity(e) {
   let h = [];
 
-  for (let i = 0; i < Object.keys(stateCityList).length; i++) {
-    if (stateCityList[i].state == "경기") {
+  for (let i = 0; i < Object.keys(stateCityList[e].city).length; i++) {
+    if (i == 0) {
       h.push(
         '<option value="' +
           i +
           '"selected>' +
-          stateCityList[i].state +
+          stateCityList[e].city[i] +
           "</option>"
       );
     } else {
       h.push(
-        '<option value="' + i + '">' + stateCityList[i].state + "</option>"
+        '<option value="' + i + '">' + stateCityList[e].city[i] + "</option>"
       );
     }
   }
-  state_list.innerHTML = h.join("");
+  city_list.innerHTML = h.join("");
 }
 
-//더하기
 function plus(button, number) {
   let result = document.getElementById(button);
   Number(result.value);
@@ -94,12 +89,17 @@ function reset() {
   result_high.value = 0;
   result_adult.value = 0;
   sum();
-  loadState();
 }
 //확인 함수
 function confirmMessage() {
   sum();
+  let area1 = stateCityList[state_list.value].state;
+  let area2 = stateCityList[state_list.value].city[city_list.value];
   let message = "".concat(
+    area1,
+    " ",
+    area2,
+    "\n",
     "유치원   (",
     result_kind.value,
     "명)\n",
@@ -132,13 +132,13 @@ function confirmMessage() {
 //데이터 전송 함수
 function sendData() {
   let area1 = stateCityList[state_list.value].state;
-  let area2;
+  let area2 = stateCityList[state_list.value].city[city_list.value];
   let concatURL = "".concat(
     inputURL,
     "?area1=",
     area1,
     "&area2=",
-    result_kind.value,
+    area2,
     "&kind=",
     result_kind.value,
     "&ele=",
