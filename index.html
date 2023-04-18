@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
       rel="stylesheet"
     />
     <!--글씨체-->
@@ -23,70 +23,78 @@
 
   <body>
     <header>
-      <div class="logo">
-        <img src="source\gise03.png" />
-        <img src="source\gise02.png" />
-      </div>
-      <div class="title">
-        <h1>경기도융합과학교육원에 오신 것을 환영합니다!!</h1>
+      <img src="source\gise03.png" style="height: 80px" />
+      <div>
+        <h1>전시관 방문을 환영합니다.</h1>
       </div>
 
-      <div id="counter">방문자수 집계</div>
+      <img src="source\gise02.png" style="height: 60px" />
     </header>
     <main>
       <!--지역 선택-->
-      <select name="stateList" id="state_list" onchange="loadCity(this.value)">
-        <option value="0">서울</option>
-        <option value="1">부산</option>
-        <option value="2">인천</option>
-        <option value="3">대구</option>
-        <option value="4">대전</option>
-        <option value="5">광주</option>
-        <option value="6">울산</option>
-        <option value="7">세종</option>
-        <option value="8" selected>경기</option>
-        <option value="9">강원</option>
-        <option value="10">충북</option>
-        <option value="11">충남</option>
-        <option value="12">전북</option>
-        <option value="13">전남</option>
-        <option value="14">경북</option>
-        <option value="15">경남</option>
-        <option value="16">제주</option>
-      </select>
-      <select name="cityList" id="city_list">
-        <option value="0" selected>수원시</option>
-        <option value="1">고양시</option>
-        <option value="2">용인시</option>
-        <option value="3">성남시</option>
-        <option value="4">부천시</option>
-        <option value="5">화성시</option>
-        <option value="6">안산시</option>
-        <option value="7">남양주시</option>
-        <option value="8">안양시</option>
-        <option value="9">평택시</option>
-        <option value="10">시흥시</option>
-        <option value="11">파주시</option>
-        <option value="12">의정부시</option>
-        <option value="13">김포시</option>
-        <option value="14">광주시</option>
-        <option value="15">광명시</option>
-        <option value="16">군포시</option>
-        <option value="17">하남시</option>
-        <option value="18">오산시</option>
-        <option value="19">양주시</option>
-        <option value="20">이천시</option>
-        <option value="21">구리시</option>
-        <option value="22">안성시</option>
-        <option value="23">포천시</option>
-        <option value="24">의왕시</option>
-        <option value="25">양평군</option>
-        <option value="26">여주시</option>
-        <option value="27">동두천시</option>
-        <option value="28">가평군</option>
-        <option value="29">과천시</option>
-        <option value="30">연천군</option>
-      </select>
+      <div class="stateCity">
+        <div>
+          <select
+            name="stateList"
+            id="state_list"
+            onchange="loadCity(this.value)"
+          >
+            <option value="0">서울</option>
+            <option value="1">부산</option>
+            <option value="2">인천</option>
+            <option value="3">대구</option>
+            <option value="4">대전</option>
+            <option value="5">광주</option>
+            <option value="6">울산</option>
+            <option value="7">세종</option>
+            <option value="8" selected>경기</option>
+            <option value="9">강원</option>
+            <option value="10">충북</option>
+            <option value="11">충남</option>
+            <option value="12">전북</option>
+            <option value="13">전남</option>
+            <option value="14">경북</option>
+            <option value="15">경남</option>
+            <option value="16">제주</option>
+          </select>
+        </div>
+        <div>
+          <select name="cityList" id="city_list">
+            <option value="0" selected>수원시</option>
+            <option value="1">고양시</option>
+            <option value="2">용인시</option>
+            <option value="3">성남시</option>
+            <option value="4">부천시</option>
+            <option value="5">화성시</option>
+            <option value="6">안산시</option>
+            <option value="7">남양주시</option>
+            <option value="8">안양시</option>
+            <option value="9">평택시</option>
+            <option value="10">시흥시</option>
+            <option value="11">파주시</option>
+            <option value="12">의정부시</option>
+            <option value="13">김포시</option>
+            <option value="14">광주시</option>
+            <option value="15">광명시</option>
+            <option value="16">군포시</option>
+            <option value="17">하남시</option>
+            <option value="18">오산시</option>
+            <option value="19">양주시</option>
+            <option value="20">이천시</option>
+            <option value="21">구리시</option>
+            <option value="22">안성시</option>
+            <option value="23">포천시</option>
+            <option value="24">의왕시</option>
+            <option value="25">양평군</option>
+            <option value="26">여주시</option>
+            <option value="27">동두천시</option>
+            <option value="28">가평군</option>
+            <option value="29">과천시</option>
+            <option value="30">연천군</option>
+          </select>
+        </div>
+      </div>
+
       <!--지역 선택-->
 
       <div class="each">
@@ -190,7 +198,10 @@
       </div>
     </main>
 
-    <footer>제작자: 교육연구원 석철호</footer>
+    <footer>
+      Copyright © GYEONGGIDO INSTITUTE OF CONVERGENCE SCIENCE EDUCATION. All
+      Right Reserved.
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

@@ -83,6 +83,8 @@ function sum() {
 }
 
 function reset() {
+  state_list.value = 8;
+  city_list.value = 0;
   result_kind.value = 0;
   result_ele.value = 0;
   result_mid.value = 0;
@@ -131,6 +133,14 @@ function confirmMessage() {
 
 //데이터 전송 함수
 function sendData() {
+  let fulldate = new Date();
+  let today =
+    fulldate.getFullYear() +
+    "-" +
+    Number(fulldate.getMonth() + 1) +
+    "-" +
+    fulldate.getDate();
+
   let area1 = stateCityList[state_list.value].state;
   let area2 = stateCityList[state_list.value].city[city_list.value];
   let concatURL = "".concat(
@@ -150,7 +160,11 @@ function sendData() {
     "&adult=",
     result_adult.value,
     "&sum=",
-    result_sum.value
+    result_sum.value,
+    "&today=",
+    today,
+    "&month=",
+    fulldate.getMonth() + 1
   );
   let xhr = new XMLHttpRequest();
   xhr.open("GET", concatURL, true);
