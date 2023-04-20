@@ -128,6 +128,7 @@ function confirmMessage() {
     reset();
   } else {
     alert("감사합니다!");
+    reset();
   }
 }
 
