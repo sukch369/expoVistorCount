@@ -86,13 +86,10 @@ select {
 }
 
 
-
-
 button {
   margin: 0;
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
-  font-weight: 400;
   text-align: center;
   text-decoration: none;
   color: white;
