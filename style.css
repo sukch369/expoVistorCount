@@ -37,36 +37,40 @@ footer {
     width: 100%;
     background-color: #ddd;
     vertical-align: middle;
-
-    
 }
+
 
 main {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    height: 70%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 0.5fr 2.5fr 1fr;
-    grid-template-rows: repeat(7, 1fr)
-
+        position: fixed;
+        top: 100px;
+        left: 0;
+        height: 70%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(7, 1fr);
 }
-div.each{
+div{
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content : center;
 
 }
-
-
+div.state {
+    grid-column-start: 3;
+    grid-column-end: 6;
+}
+div.city {
+    grid-column-start: 6;
+    grid-column-end: 9;
+}
+div.number-result {
+    grid-column-start: 3;
+    grid-column-end: 6;
+}
 
 
 select {
     height: 50px;
-    width: 100px;
     font-size: 1.5rem;
     text-align: center;
 }
@@ -94,7 +98,7 @@ button.plus,button.minus {
   height: 60px;
   border-radius: 50%;
 }
-button.button {
+button.confirm, button.reset {
     width: auto;
   min-width: 40px;
   height: 50px;

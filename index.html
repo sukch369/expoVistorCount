@@ -34,74 +34,74 @@
       <!--지역 선택-->
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">지역</div>
-      <div class="each">
-        <div>
-          <select
-            name="stateList"
-            id="state_list"
-            onchange="loadCity(this.value)"
-          >
-            <option value="0">서울</option>
-            <option value="1">부산</option>
-            <option value="2">인천</option>
-            <option value="3">대구</option>
-            <option value="4">대전</option>
-            <option value="5">광주</option>
-            <option value="6">울산</option>
-            <option value="7">세종</option>
-            <option value="8" selected>경기</option>
-            <option value="9">강원</option>
-            <option value="10">충북</option>
-            <option value="11">충남</option>
-            <option value="12">전북</option>
-            <option value="13">전남</option>
-            <option value="14">경북</option>
-            <option value="15">경남</option>
-            <option value="16">제주</option>
-          </select>
-        </div>
-        <div>
-          <select name="cityList" id="city_list">
-            <option value="0" selected>수원시</option>
-            <option value="1">고양시</option>
-            <option value="2">용인시</option>
-            <option value="3">성남시</option>
-            <option value="4">부천시</option>
-            <option value="5">화성시</option>
-            <option value="6">안산시</option>
-            <option value="7">남양주시</option>
-            <option value="8">안양시</option>
-            <option value="9">평택시</option>
-            <option value="10">시흥시</option>
-            <option value="11">파주시</option>
-            <option value="12">의정부시</option>
-            <option value="13">김포시</option>
-            <option value="14">광주시</option>
-            <option value="15">광명시</option>
-            <option value="16">군포시</option>
-            <option value="17">하남시</option>
-            <option value="18">오산시</option>
-            <option value="19">양주시</option>
-            <option value="20">이천시</option>
-            <option value="21">구리시</option>
-            <option value="22">안성시</option>
-            <option value="23">포천시</option>
-            <option value="24">의왕시</option>
-            <option value="25">양평군</option>
-            <option value="26">여주시</option>
-            <option value="27">동두천시</option>
-            <option value="28">가평군</option>
-            <option value="29">과천시</option>
-            <option value="30">연천군</option>
-          </select>
-        </div>
+      <div class="state">
+        <select
+          name="stateList"
+          id="state_list"
+          onchange="loadCity(this.value)"
+        >
+          <option value="0">서울</option>
+          <option value="1">부산</option>
+          <option value="2">인천</option>
+          <option value="3">대구</option>
+          <option value="4">대전</option>
+          <option value="5">광주</option>
+          <option value="6">울산</option>
+          <option value="7">세종</option>
+          <option value="8" selected>경기</option>
+          <option value="9">강원</option>
+          <option value="10">충북</option>
+          <option value="11">충남</option>
+          <option value="12">전북</option>
+          <option value="13">전남</option>
+          <option value="14">경북</option>
+          <option value="15">경남</option>
+          <option value="16">제주</option>
+        </select>
+      </div>
+      <div class="city">
+        <select name="cityList" id="city_list">
+          <option value="0" selected>수원시</option>
+          <option value="1">고양시</option>
+          <option value="2">용인시</option>
+          <option value="3">성남시</option>
+          <option value="4">부천시</option>
+          <option value="5">화성시</option>
+          <option value="6">안산시</option>
+          <option value="7">남양주시</option>
+          <option value="8">안양시</option>
+          <option value="9">평택시</option>
+          <option value="10">시흥시</option>
+          <option value="11">파주시</option>
+          <option value="12">의정부시</option>
+          <option value="13">김포시</option>
+          <option value="14">광주시</option>
+          <option value="15">광명시</option>
+          <option value="16">군포시</option>
+          <option value="17">하남시</option>
+          <option value="18">오산시</option>
+          <option value="19">양주시</option>
+          <option value="20">이천시</option>
+          <option value="21">구리시</option>
+          <option value="22">안성시</option>
+          <option value="23">포천시</option>
+          <option value="24">의왕시</option>
+          <option value="25">양평군</option>
+          <option value="26">여주시</option>
+          <option value="27">동두천시</option>
+          <option value="28">가평군</option>
+          <option value="29">과천시</option>
+          <option value="30">연천군</option>
+        </select>
       </div>
       <div class="blank"><!--좌우 공백--></div>
       <!--지역 선택-->
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">유아</div>
-      <div class="each">
+      <div class="button-number">
         <button class="minus" onclick="minus('result_kind')">-</button>
+      </div>
+      <div class="number">
         <input
           class="result"
           id="result_kind"
@@ -109,16 +109,26 @@
           value="0"
           readonly
         />
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_kind',1)">+1</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_kind',2)">+2</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_kind',5)">+5</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_kind',10)">+10</button>
       </div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">초등학생</div>
-      <div class="each">
+      <div class="button-number">
         <button class="minus" onclick="minus('result_ele')">-</button>
+      </div>
+      <div class="number">
         <input
           class="result"
           id="result_ele"
@@ -126,16 +136,27 @@
           value="0"
           readonly
         />
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_ele',1)">+1</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_ele',2)">+2</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_ele',5)">+5</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_ele',10)">+10</button>
       </div>
+
       <div class="blank"><!--좌우 공백--></div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">중학생</div>
-      <div class="each">
+      <div class="button-number">
         <button class="minus" onclick="minus('result_mid')">-</button>
+      </div>
+      <div class="number">
         <input
           class="result"
           id="result_mid"
@@ -143,16 +164,27 @@
           value="0"
           readonly
         />
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_mid',1)">+1</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_mid',2)">+2</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_mid',5)">+5</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_mid',10)">+10</button>
       </div>
+
       <div class="blank"><!--좌우 공백--></div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">고등학생</div>
-      <div class="each">
+      <div class="button-number">
         <button class="minus" onclick="minus('result_high')">-</button>
+      </div>
+      <div class="number">
         <input
           class="result"
           id="result_high"
@@ -160,16 +192,26 @@
           value="0"
           readonly
         />
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_high',1)">+1</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_high',2)">+2</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_high',5)">+5</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_high',10)">+10</button>
       </div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">성인</div>
-      <div class="each">
+      <div class="button-number">
         <button class="minus" onclick="minus('result_adult')">-</button>
+      </div>
+      <div class="number">
         <input
           class="result"
           id="result_adult"
@@ -177,15 +219,23 @@
           value="0"
           readonly
         />
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_adult',1)">+1</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_adult',2)">+2</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_adult',5)">+5</button>
+      </div>
+      <div class="button-number">
         <button class="plus" onclick="plus('result_adult',10)">+10</button>
       </div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="blank"><!--좌우 공백--></div>
       <div class="label">합계</div>
-      <div class="each">
+      <div class="number-result">
         <input
           class="result"
           id="result_sum"
@@ -193,10 +243,13 @@
           value="0"
           readonly
         />
-        <button class="button" onclick="confirmMessage()">확인</button>
-        <button class="button" onclick="reset()">초기화</button>
       </div>
-
+      <div class="button-confirm">
+        <button class="confirm" onclick="confirmMessage()">확인</button>
+      </div>
+      <div class="button-reset">
+        <button class="reset" onclick="reset()">초기화</button>
+      </div>
       <div class="blank"><!--좌우 공백--></div>
     </main>
 
