@@ -123,11 +123,9 @@ function confirmMessage() {
   );
   let confirmflag = confirm(message);
   if (confirmflag) {
-    alert("감사합니다!");
     sendData();
     reset();
   } else {
-    alert("감사합니다!");
     reset();
   }
 }
