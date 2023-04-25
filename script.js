@@ -161,9 +161,7 @@ function sendData() {
     "&sum=",
     result_sum.value,
     "&today=",
-    today,
-    "&month=",
-    fulldate.getMonth() + 1
+    today
   );
   let xhr = new XMLHttpRequest();
   xhr.open("GET", concatURL, true);
