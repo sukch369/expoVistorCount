@@ -8,7 +8,30 @@ let result_mid = document.getElementById("result_mid"); //중학생 인원수
 let result_high = document.getElementById("result_high"); //고등학생 인원수
 let result_adult = document.getElementById("result_adult"); //성인 인원수
 let result_sum = document.getElementById("result_sum"); //합계 인원수
+let fulldate = new Date();
+//보낼 날짜
+let sendToday =
+  fulldate.getFullYear() +
+  "-" +
+  Number(fulldate.getMonth() + 1) +
+  "-" +
+  fulldate.getDate();
+//출력 날짜
+const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
+let today = document.getElementById("today");
+today.innerHTML =
+  fulldate.getFullYear() +
+  "년" +
+  Number(fulldate.getMonth() + 1) +
+  "월" +
+  fulldate.getDate() +
+  "일" +
+  " (" +
+  WEEKDAY[fulldate.getDay()] +
+  ") ";
+
 let stateCityList = new Object();
+//구글 링크
 const inputURL =
   "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
 const listURL = "stateCityList.json";
@@ -132,14 +155,6 @@ function confirmMessage() {
 
 //데이터 전송 함수
 function sendData() {
-  let fulldate = new Date();
-  let today =
-    fulldate.getFullYear() +
-    "-" +
-    Number(fulldate.getMonth() + 1) +
-    "-" +
-    fulldate.getDate();
-
   let area1 = stateCityList[state_list.value].state;
   let area2 = stateCityList[state_list.value].city[city_list.value];
   let concatURL = "".concat(
@@ -161,7 +176,7 @@ function sendData() {
     "&sum=",
     result_sum.value,
     "&today=",
-    today
+    sendToday
   );
   let xhr = new XMLHttpRequest();
   xhr.open("GET", concatURL, true);
