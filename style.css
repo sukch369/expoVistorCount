@@ -92,7 +92,6 @@ select {
     background-color: #dfe6e9;
     border-width: medium;
     border-style: solid;
-
 }
 
 
@@ -119,17 +118,15 @@ button.reset {
 }
 button.minus {
     background-color: #e74c3c;
-    font-size: 2rem;
 }
 button.plus-1, button.plus-5 {
     background-color: #3498db;
-    font-size: 2rem;
+
 }
 button.plus-2, button.plus-10 {
     background-color: #2980b9;
-    font-size: 2rem;
-
 }
+
 input{
     margin: 5px;
     padding: 0.5rem 1rem;
