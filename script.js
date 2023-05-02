@@ -107,7 +107,7 @@ function sum() {
 
 function reset() {
   state_list.value = 8;
-  city_list.value = 0;
+  loadCity(state_list.value);
   result_kind.value = 0;
   result_ele.value = 0;
   result_mid.value = 0;
