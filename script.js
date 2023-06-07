@@ -19,6 +19,18 @@ let sendToday =
 //출력 날짜
 const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
 let today = document.getElementById("today");
+function now() {
+  let hours = fulldate.getHours();
+  let minutes = fulldate.getMinutes();
+  if (hours > 12) {
+    hours = "오후 " + Number(hours - 12) + ":";
+  } else if ((hours = 12)) {
+    hours = "오후 " + Number(12) + ":";
+  } else {
+    hours = "오전 " + Number(hours) + ":";
+  }
+  return hours + minutes;
+}
 today.innerHTML =
   fulldate.getFullYear() +
   "년" +
@@ -28,12 +40,16 @@ today.innerHTML =
   "일" +
   " (" +
   WEEKDAY[fulldate.getDay()] +
-  ") ";
+  ") " +
+  now();
 
 let stateCityList = new Object();
 //구글 링크
-const inputURL =
+const DBinputURL =
   "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
+const DBoutputURL =
+  "https://script.google.com/macros/s/AKfycbyS6sNVtQHeIJTzggJTK_yrb5rEAFTTAC3Ro3fgWyCTK5rBy-YjRzTPzECmZ17Lm6ZwMQ/exec?sheetName=count";
+
 const listURL = "stateCityList.json";
 
 window.onload = function () {
@@ -59,24 +75,28 @@ getStateCityList();
 
 //시군구 불러오기
 function loadCity(e) {
-  let h = [];
+  if (e == "none") {
+    city_list.innerHTML = '<option value="none">골라주세요</option>';
+  } else {
+    let h = [];
 
-  for (let i = 0; i < Object.keys(stateCityList[e].city).length; i++) {
-    if (i == 0) {
-      h.push(
-        '<option value="' +
-          i +
-          '"selected>' +
-          stateCityList[e].city[i] +
-          "</option>"
-      );
-    } else {
-      h.push(
-        '<option value="' + i + '">' + stateCityList[e].city[i] + "</option>"
-      );
+    for (let i = 0; i < Object.keys(stateCityList[e].city).length; i++) {
+      if (i == 0) {
+        h.push(
+          '<option value="' +
+            i +
+            '"selected>' +
+            stateCityList[e].city[i] +
+            "</option>"
+        );
+      } else {
+        h.push(
+          '<option value="' + i + '">' + stateCityList[e].city[i] + "</option>"
+        );
+      }
     }
+    city_list.innerHTML = h.join("");
   }
-  city_list.innerHTML = h.join("");
 }
 
 function plus(button, number) {
@@ -106,7 +126,7 @@ function sum() {
 }
 
 function reset() {
-  state_list.value = 8;
+  state_list.value = "none";
   loadCity(state_list.value);
   result_kind.value = 0;
   result_ele.value = 0;
@@ -114,42 +134,48 @@ function reset() {
   result_high.value = 0;
   result_adult.value = 0;
   sum();
+  /*getData();*/
 }
 //확인 함수
 function confirmMessage() {
-  sum();
-  let area1 = stateCityList[state_list.value].state;
-  let area2 = stateCityList[state_list.value].city[city_list.value];
-  let message = "".concat(
-    area1,
-    " ",
-    area2,
-    "\n",
-    "유치원   (",
-    result_kind.value,
-    "명)\n",
-    "초등학생 (",
-    result_ele.value,
-    "명)\n",
-    "중학생   (",
-    result_mid.value,
-    "명)\n",
-    "고등학생 (",
-    result_high.value,
-    "명)\n",
-    "성인     (",
-    result_adult.value,
-    "명)\n",
-    "총 (",
-    result_sum.value,
-    "명) 이 맞습니까?"
-  );
-  let confirmflag = confirm(message);
-  if (confirmflag) {
-    sendData();
+  if (state_list.value == "none" || city_list.value == "none") {
+    alert("방문하신 지역을 골라주세요.");
     reset();
   } else {
-    reset();
+    sum();
+    let area1 = stateCityList[state_list.value].state;
+    let area2 = stateCityList[state_list.value].city[city_list.value];
+    let message = "".concat(
+      area1,
+      " ",
+      area2,
+      "\n",
+      "유치원   (",
+      result_kind.value,
+      "명)\n",
+      "초등학생 (",
+      result_ele.value,
+      "명)\n",
+      "중학생   (",
+      result_mid.value,
+      "명)\n",
+      "고등학생 (",
+      result_high.value,
+      "명)\n",
+      "성인     (",
+      result_adult.value,
+      "명)\n",
+      "총 (",
+      result_sum.value,
+      "명) 이 맞습니까?"
+    );
+    let confirmflag = confirm(message);
+    if (confirmflag) {
+      sendData();
+      reset();
+    } else {
+      reset();
+    }
   }
 }
 
@@ -158,7 +184,7 @@ function sendData() {
   let area1 = stateCityList[state_list.value].state;
   let area2 = stateCityList[state_list.value].city[city_list.value];
   let concatURL = "".concat(
-    inputURL,
+    DBinputURL,
     "?area1=",
     area1,
     "&area2=",
@@ -191,3 +217,19 @@ function sendData() {
     }
   };
 }
+/*
+let count = new Object();
+function getData() {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", DBoutputURL, true);
+  xhr.send();
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      count = xhr.response;
+    } else {
+      //failed
+      console.log("실패");
+    }
+  };
+}
+*/

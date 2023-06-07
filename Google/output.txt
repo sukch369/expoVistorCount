@@ -1,0 +1,51 @@
+var SCRIPT_PROP = PropertiesService.getScriptProperties(); // new property service
+
+// If you don't want to expose either GET or POST methods you can comment out the appropriate function
+function doGet(e) {
+  var lock = LockService.getPublicLock();
+  lock.waitLock(30000);
+  
+  var rawData;
+  try {
+    var doc = SpreadsheetApp.openById(SCRIPT_PROP.getProperty("key"));
+    var sheetName = e.parameter["sheetName"];
+    var sheetInitial = doc.getSheetByName(sheetName);
+    var headers = sheetInitial.getRange(1, 1, 1, sheetInitial.getLastColumn()).getValues()[0];
+    var rawData = sheetInitial.getRange(2, 1, sheetInitial.getLastRow(), sheetInitial.getLastColumn()).getValues()
+    
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({"ok": false, "error": error}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  var data = [];
+  var headerLength = headers.length;
+  var rowLength = rawData.length;
+    
+  if (rawData) {
+    for (var r=0; r < rowLength; r++) {
+      if (rawData[r][0] === "") {
+        continue;
+      }
+      var row = {};
+      for (var i=0; i< headerLength; i++) {
+        row[headers[i]] = rawData[r][i];
+      }
+      data.push(row)
+    }
+  }
+  
+  return ContentService
+    .createTextOutput(JSON.stringify({data})) //JSON 출력
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e){
+  //    do nothing
+}
+
+
+function setup() {
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  SCRIPT_PROP.setProperty("key", doc.getId());
+}

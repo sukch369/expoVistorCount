@@ -43,10 +43,11 @@ footer {
     justify-content: space-around;
     align-items: center;
 }
-/* 하단 날짜*/
+/* 하단 일시*/
 #today{
-    font-weight : 700;
-    font-size: 1.7rem;
+    font-weight : 600;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 main {
