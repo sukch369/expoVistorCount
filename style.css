@@ -30,6 +30,8 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+/* 상단 인원수 */
+
 footer {
     position: fixed;
     bottom: 0; left: 0;
@@ -44,11 +46,19 @@ footer {
     align-items: center;
 }
 /* 하단 일시*/
+/*(
 #today{
     font-weight : 600;
     font-size: 1.5rem;
     text-align: center;
 }
+*/
+.footer_contents {
+font-weight : 600;
+    font-size: 1.3rem;
+    align-content: center;
+}
+
 
 main {
         position: fixed;

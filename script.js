@@ -8,6 +8,7 @@ let result_mid = document.getElementById("result_mid"); //중학생 인원수
 let result_high = document.getElementById("result_high"); //고등학생 인원수
 let result_adult = document.getElementById("result_adult"); //성인 인원수
 let result_sum = document.getElementById("result_sum"); //합계 인원수
+let countData = document.getElementById("countData"); //인원수 통계
 let fulldate = new Date();
 //보낼 날짜
 let sendToday =
@@ -16,6 +17,7 @@ let sendToday =
   Number(fulldate.getMonth() + 1) +
   "-" +
   fulldate.getDate();
+
 //출력 날짜
 const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
 let today = document.getElementById("today");
@@ -24,10 +26,13 @@ function now() {
   let minutes = fulldate.getMinutes();
   if (hours > 12) {
     hours = "오후 " + Number(hours - 12) + ":";
-  } else if ((hours = 12)) {
+  } else if (hours == 12) {
     hours = "오후 " + Number(12) + ":";
   } else {
     hours = "오전 " + Number(hours) + ":";
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
   }
   return hours + minutes;
 }
@@ -43,7 +48,12 @@ today.innerHTML =
   ") " +
   now();
 
-let stateCityList = new Object();
+let stateCityList = new Object(); //시도 목록 객체
+
+//인원수 통계
+let countRaw;
+let countParse = new Object();
+
 //구글 링크
 const DBinputURL =
   "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
@@ -54,6 +64,7 @@ const listURL = "stateCityList.json";
 
 window.onload = function () {
   getStateCityList();
+  getData();
 };
 
 //지역 불러오기 from json
@@ -72,6 +83,25 @@ function getStateCityList() {
   };
 }
 getStateCityList();
+
+//방문자 수 불러오기
+function getData() {
+  let xhr = new XMLHttpRequest();
+  let str;
+  xhr.open("GET", DBoutputURL, true);
+  xhr.send();
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      countRaw = xhr.response;
+      countParse = JSON.parse(countRaw);
+      countParse = countParse.data[0].today;
+      countData.innerText = "오늘의 방문자: " + countParse + "명";
+    } else {
+      //failed
+      console.log("실패");
+    }
+  };
+}
 
 //시군구 불러오기
 function loadCity(e) {
@@ -134,7 +164,7 @@ function reset() {
   result_high.value = 0;
   result_adult.value = 0;
   sum();
-  /*getData();*/
+  getData();
 }
 //확인 함수
 function confirmMessage() {
@@ -217,19 +247,3 @@ function sendData() {
     }
   };
 }
-/*
-let count = new Object();
-function getData() {
-  let xhr = new XMLHttpRequest();
-  xhr.open("GET", DBoutputURL, true);
-  xhr.send();
-  xhr.onload = () => {
-    if (xhr.status == 200) {
-      count = xhr.response;
-    } else {
-      //failed
-      console.log("실패");
-    }
-  };
-}
-*/
