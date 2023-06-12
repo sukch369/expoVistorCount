@@ -10,6 +10,12 @@ let result_adult = document.getElementById("result_adult"); //성인 인원수
 let result_sum = document.getElementById("result_sum"); //합계 인원수
 let countData = document.getElementById("countData"); //인원수 통계
 let fulldate = new Date();
+//구글 링크
+const DBinputURL =
+  "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
+const DBoutputURL =
+  "https://script.google.com/macros/s/AKfycbyS6sNVtQHeIJTzggJTK_yrb5rEAFTTAC3Ro3fgWyCTK5rBy-YjRzTPzECmZ17Lm6ZwMQ/exec?sheetName=count";
+
 //보낼 날짜
 let sendToday =
   fulldate.getFullYear() +
@@ -21,44 +27,42 @@ let sendToday =
 //출력 날짜
 const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
 let today = document.getElementById("today");
-function now() {
-  let hours = fulldate.getHours();
-  let minutes = fulldate.getMinutes();
-  if (hours > 12) {
-    hours = "오후 " + Number(hours - 12) + ":";
-  } else if (hours == 12) {
-    hours = "오후 " + Number(12) + ":";
-  } else {
-    hours = "오전 " + Number(hours) + ":";
-  }
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  return hours + minutes;
+function inputTime() {
+  today.innerHTML =
+    fulldate.getFullYear() +
+    "년" +
+    Number(fulldate.getMonth() + 1) +
+    "월" +
+    fulldate.getDate() +
+    "일" +
+    " (" +
+    WEEKDAY[fulldate.getDay()] +
+    ") ";
 }
-today.innerHTML =
-  fulldate.getFullYear() +
-  "년" +
-  Number(fulldate.getMonth() + 1) +
-  "월" +
-  fulldate.getDate() +
-  "일" +
-  " (" +
-  WEEKDAY[fulldate.getDay()] +
-  ") " +
-  now();
+inputTime();
 
 let stateCityList = new Object(); //시도 목록 객체
-
+getData();
 //인원수 통계
 let countRaw;
 let countParse = new Object();
-
-//구글 링크
-const DBinputURL =
-  "https://script.google.com/macros/s/AKfycbwcr95sVJZHktpatokoXEM0jg_n4K1P0wl5aqczOVwjXbzGaGtnisBZkhSaJFZzm9c9/exec";
-const DBoutputURL =
-  "https://script.google.com/macros/s/AKfycbyS6sNVtQHeIJTzggJTK_yrb5rEAFTTAC3Ro3fgWyCTK5rBy-YjRzTPzECmZ17Lm6ZwMQ/exec?sheetName=count";
+//방문자 수 불러오기
+function getData() {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", DBoutputURL, true);
+  xhr.send();
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      countRaw = xhr.response;
+      countParse = JSON.parse(countRaw);
+      countParse = countParse.data[0].today;
+      countData.innerText = "오늘의 방문자: " + countParse + "명";
+    } else {
+      //failed
+      console.log("실패");
+    }
+  };
+}
 
 const listURL = "stateCityList.json";
 
@@ -83,25 +87,6 @@ function getStateCityList() {
   };
 }
 getStateCityList();
-
-//방문자 수 불러오기
-function getData() {
-  let xhr = new XMLHttpRequest();
-  let str;
-  xhr.open("GET", DBoutputURL, true);
-  xhr.send();
-  xhr.onload = () => {
-    if (xhr.status == 200) {
-      countRaw = xhr.response;
-      countParse = JSON.parse(countRaw);
-      countParse = countParse.data[0].today;
-      countData.innerText = "오늘의 방문자: " + countParse + "명";
-    } else {
-      //failed
-      console.log("실패");
-    }
-  };
-}
 
 //시군구 불러오기
 function loadCity(e) {
